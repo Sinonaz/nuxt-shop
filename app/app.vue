@@ -1,6 +1,10 @@
+<script setup lang="ts">
+  const hello = ref<string>('hello')
+</script>
+
 <template>
   <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    {{ hello }}
+    <AppTest />
   </div>
 </template>
