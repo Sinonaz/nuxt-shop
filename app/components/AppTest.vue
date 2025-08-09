@@ -1,7 +1,9 @@
 <script setup lang="ts">
-  const { text } = useAppConfig()
+  const appConfig = useAppConfig()
 </script>
 
 <template>
-  {{ text }}
+  <div>
+    {{ appConfig.text }}
+  </div>
 </template>

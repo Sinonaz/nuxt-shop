@@ -1,10 +1,7 @@
-<script setup lang="ts">
-  const hello = ref<string>('hello')
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div>
-    {{ hello }}
     <AppTest />
   </div>
 </template>
