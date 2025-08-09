@@ -3,5 +3,5 @@
   "singleQuote": true,
   "tabWidth": 2,
   "vueIndentScriptAndStyle": true,
-  "trailingComma": "all"
+  "trailingComma": "none"
 }
