@@ -1,7 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import '~/assets/styles/main.less'
+</script>
 
 <template>
-  <div>
-    <AppTest />
-  </div>
+  <NuxtPage />
 </template>
