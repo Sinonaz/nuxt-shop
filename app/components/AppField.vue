@@ -1,6 +1,6 @@
 <script setup lang="ts">
   const value = defineModel<string>()
-  const { variant = 'gray' } = defineProps<{ variant?: 'gray' | 'black' }>()
+  const { variant = null } = defineProps<{ variant?: 'gray' | 'black' | null }>()
 </script>
 
 <template>
@@ -15,7 +15,7 @@
     color: var(--color-black);
     outline: none;
     font-family: var(--font);
-    font-size: 16px;
+    font-size: inherit;
 
     &::placeholder {
       color: var(--color-dark-gray);
