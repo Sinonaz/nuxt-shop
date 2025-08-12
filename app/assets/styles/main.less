@@ -6,6 +6,12 @@
   --color-accent: #a18a68;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body,
 #__nuxt,
@@ -15,4 +21,7 @@ main {
 
 body {
   font-family: var(--font);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
