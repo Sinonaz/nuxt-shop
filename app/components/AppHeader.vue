@@ -8,19 +8,19 @@
       </NuxtLink>
 
       <nav class="header__nav">
-        <NuxtLink to="/catalog/">Магазин</NuxtLink>
-        <NuxtLink to="/about">О нас</NuxtLink>
+        <NuxtLink to="/catalog/" active-class="border-bottom">Магазин</NuxtLink>
+        <NuxtLink to="/about" active-class="border-bottom">О нас</NuxtLink>
       </nav>
 
       <div class="header__actions">
         <SearchField />
-        <NuxtLink to="/cart">
+        <NuxtLink to="/cart" active-class="border-bottom">
           <Icon name="mdi:cart-outline" size="22px" />
         </NuxtLink>
-        <NuxtLink to="/favorites">
+        <NuxtLink to="/favorites" active-class="border-bottom">
           <Icon name="mdi:cards-heart-outline" size="22px" />
         </NuxtLink>
-        <NuxtLink to="/auth/login">
+        <NuxtLink to="/auth/login" active-class="border-bottom">
           <Icon name="mdi:account-outline" size="22px" />
         </NuxtLink>
       </div>
@@ -91,6 +91,21 @@
       &:is(:hover, :focus) {
         color: var(--color-accent);
       }
+    }
+  }
+
+  .border-bottom {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: calc(100% + 18px);
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 2px;
+      background: var(--color-accent);
     }
   }
 </style>
