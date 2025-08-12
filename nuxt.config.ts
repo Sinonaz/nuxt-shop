@@ -5,5 +5,13 @@ export default defineNuxtConfig({
   modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/image', '@nuxt/scripts', '@nuxt/icon'],
   runtimeConfig: {
     token: ''
+  },
+  icon: {
+    customCollections: [
+      {
+        prefix: 'icons',
+        dir: './app/assets/icons'
+      }
+    ]
   }
 })

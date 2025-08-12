@@ -1,12 +1,15 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+  import AppHeader from '~/components/AppHeader.vue'
+</script>
 
 <template>
   <div class="app">
-    <header>Header</header>
+    <AppHeader />
     <main>
-      <slot />
+      <AppWrapper>
+        <slot />
+      </AppWrapper>
     </main>
-
     <AppFooter />
   </div>
 </template>
