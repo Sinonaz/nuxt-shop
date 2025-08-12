@@ -1,5 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-  <h1>Hello word!</h1>
+  <div>
+    <h1>Hello word!</h1>
+  </div>
 </template>
