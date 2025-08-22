@@ -6,32 +6,26 @@
   const defaultSelectOption = { label: 'Категория', value: '' }
 
   const selectValue = ref<string>('')
-  const { data } = await useFetch<{ categories: CategoryInterface[] }>(apiUrl + '/categories')
+  const { data: categoriesData } = await useFetch<{ categories: CategoryInterface[] }>(
+    apiUrl + '/categories'
+  )
+  const { data: productsData } = await useFetch<{ products: ProductInterface[] }>(
+    apiUrl + '/products',
+    {
+      query: {
+        limit: 20,
+        offset: 0
+      }
+    }
+  )
 
   const selectItems = computed(() => {
-    return data.value
-      ? data.value.categories
+    return categoriesData.value
+      ? categoriesData.value.categories
           .map(({ id, name }) => Object.assign({}, { label: name, value: id.toString() }))
           .concat([defaultSelectOption])
       : [defaultSelectOption]
   })
-
-  const product: ProductInterface = {
-    id: 1,
-    name: 'Lira Earrings',
-    price: 20,
-    short_description: 'Элегантные золотистые серьги-кольца',
-    long_description:
-      'Отлично подойдут к любому гардеробу. Чистое золото высокой пробы, которое не оставит вас равнодушными к качеству изделия.',
-    discount: 0,
-    images: [
-      '/images/jewelry/lira1.jpg',
-      '/images/jewelry/lira2.jpg',
-      '/images/jewelry/lira3.jpg',
-      '/images/jewelry/lira4.jpg'
-    ],
-    category_id: 1
-  }
 </script>
 
 <template>
@@ -44,7 +38,7 @@
 
       <div class="catalog__list-wrap">
         <div class="catalog__list">
-          <ProductCard :product />
+          <ProductCard v-for="product in productsData?.products" :key="product.id" :product />
         </div>
       </div>
     </div>
@@ -69,6 +63,17 @@
 
   .catalog__filter {
     max-width: 260px;
+    width: 100%;
+  }
+
+  .catalog__list-wrap {
+    width: 100%;
+  }
+
+  .catalog__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 70px 24px;
     width: 100%;
   }
 </style>

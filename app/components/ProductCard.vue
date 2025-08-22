@@ -49,6 +49,9 @@
 
   .product__img {
     border-radius: 8px;
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
   }
 
   .product__discount {
