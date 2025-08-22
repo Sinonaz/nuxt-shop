@@ -6,7 +6,7 @@
   <article class="product">
     <FavBtn class="product__fav" />
     <span v-if="product.discount" class="product__discount">-{{ product.discount }}%</span>
-    <NuxtLink class="product__wrapper">
+    <NuxtLink class="product__wrapper" :to="`/catalog/${product.id}`">
       <NuxtImg class="product__img" :src="product.images[0]" width="300" heigth="300" />
 
       <span class="product__title">{{ product.name }}</span>
@@ -31,6 +31,8 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+    color: inherit;
+    text-decoration: none;
   }
 
   .product__title {
