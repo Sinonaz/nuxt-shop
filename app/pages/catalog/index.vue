@@ -15,6 +15,23 @@
           .concat([defaultSelectOption])
       : [defaultSelectOption]
   })
+
+  const product: ProductInterface = {
+    id: 1,
+    name: 'Lira Earrings',
+    price: 20,
+    short_description: 'Элегантные золотистые серьги-кольца',
+    long_description:
+      'Отлично подойдут к любому гардеробу. Чистое золото высокой пробы, которое не оставит вас равнодушными к качеству изделия.',
+    discount: 0,
+    images: [
+      '/images/jewelry/lira1.jpg',
+      '/images/jewelry/lira2.jpg',
+      '/images/jewelry/lira3.jpg',
+      '/images/jewelry/lira4.jpg'
+    ],
+    category_id: 1
+  }
 </script>
 
 <template>
@@ -23,6 +40,12 @@
     <div class="catalog__wrapper">
       <div class="catalog__filter">
         <AppSelect v-model="selectValue" :items="selectItems" name="category" />
+      </div>
+
+      <div class="catalog__list-wrap">
+        <div class="catalog__list">
+          <ProductCard :product />
+        </div>
       </div>
     </div>
   </div>
