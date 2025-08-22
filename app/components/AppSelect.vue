@@ -1,6 +1,5 @@
 <script setup lang="ts">
-  const { label, items, name } = defineProps<{
-    label: string
+  const { items, name } = defineProps<{
     name: string
     items: { label: string; value: string }[]
   }>()
@@ -11,7 +10,6 @@
 <template>
   <div class="select">
     <select v-model="selectValue" :name>
-      <option value="">{{ label }}</option>
       <option v-for="item in items" :key="item.value" :value="item.value">{{ item.label }}</option>
     </select>
 

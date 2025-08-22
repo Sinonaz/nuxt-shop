@@ -2,6 +2,9 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  imports: {
+    dirs: ['interfaces']
+  },
   devServer: {
     port: 3001
   },
