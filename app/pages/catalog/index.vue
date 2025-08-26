@@ -5,18 +5,22 @@
 
   const defaultSelectOption = { label: 'Категория', value: '' }
 
-  const selectValue = ref<string>('')
+  const categoryId = ref<string>('')
+
+  const query = computed(() => {
+    return {
+      limit: 20,
+      offset: 0,
+      category_id: categoryId.value || undefined
+    }
+  })
+
   const { data: categoriesData } = await useFetch<{ categories: CategoryInterface[] }>(
     apiUrl + '/categories'
   )
   const { data: productsData } = await useFetch<{ products: ProductInterface[] }>(
     apiUrl + '/products',
-    {
-      query: {
-        limit: 20,
-        offset: 0
-      }
-    }
+    { query }
   )
 
   const selectItems = computed(() => {
@@ -33,7 +37,7 @@
     <h1 class="catalog__title">Каталог товаров</h1>
     <div class="catalog__wrapper">
       <div class="catalog__filter">
-        <AppSelect v-model="selectValue" :items="selectItems" name="category" />
+        <AppSelect v-model="categoryId" :items="selectItems" name="category" />
       </div>
 
       <div class="catalog__list-wrap">
