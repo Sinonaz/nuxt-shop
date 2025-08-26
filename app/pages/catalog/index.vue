@@ -8,11 +8,13 @@
   const route = useRoute()
 
   const categoryId = ref<string>(route.query.category_id?.toString() ?? '')
+  const search = ref<string>(route.query.search?.toString() ?? '')
   const query = computed(() => {
     return {
       limit: route.query.limit ?? 20,
       offset: route.query.offset ?? 0,
-      category_id: route.query.category_id || undefined
+      category_id: route.query.category_id || undefined,
+      search: route.query.search || undefined
     }
   })
   const selectItems = computed(() => {
@@ -29,8 +31,8 @@
     query
   })
 
-  watch(categoryId, (value) => {
-    router.replace({ query: { category_id: value } })
+  watchEffect(() => {
+    router.replace({ query: { category_id: categoryId.value, search: search.value } })
   })
 </script>
 
@@ -39,6 +41,11 @@
     <h1 class="catalog__title">Каталог товаров</h1>
     <div class="catalog__wrapper">
       <div class="catalog__filter">
+        <div class="catalog__search">
+          <AppField v-model="search" />
+          <Icon name="mdi:magnify" size="22px" />
+        </div>
+
         <AppSelect v-model="categoryId" :items="selectItems" name="category" />
       </div>
 
@@ -54,6 +61,14 @@
 <style scoped lang="less">
   .catalog {
     padding: 100px 0;
+  }
+
+  .catalog__search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 45px;
+    border-bottom: 1px solid var(--color-gray);
   }
 
   .catalog__wrapper {
