@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import { useDebounceFn } from '@vueuse/core'
+
   const defaultSelectOption = { label: 'Категория', value: '' }
 
   const {
@@ -6,6 +8,9 @@
   } = useRuntimeConfig()
   const router = useRouter()
   const route = useRoute()
+  const updateQueryParams = useDebounceFn((categoryId, search) => {
+    router.replace({ query: { category_id: categoryId, search } })
+  }, 500)
 
   const categoryId = ref<string>(route.query.category_id?.toString() ?? '')
   const search = ref<string>(route.query.search?.toString() ?? '')
@@ -31,9 +36,7 @@
     query
   })
 
-  watchEffect(() => {
-    router.replace({ query: { category_id: categoryId.value, search: search.value } })
-  })
+  watch([categoryId, search], ([categoryValue, searchValue]) => updateQueryParams(categoryValue, searchValue))
 </script>
 
 <template>
