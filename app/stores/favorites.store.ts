@@ -1,27 +1,31 @@
 import { defineStore } from 'pinia'
 
-export const useFavoritesStore = defineStore('favorites', () => {
-  const favoriteIds = ref<number[]>([])
+export const useFavoritesStore = defineStore(
+  'favorites',
+  () => {
+    const favoriteIds = ref<number[]>([])
 
-  function addToFavorite(id: number): void {
-    if (!favoriteIds.value.includes(id)) {
-      favoriteIds.value.push(id)
-    }
-  }
-
-  function toggleFavorites(id: number): void {
-    if (!favoriteIds.value.includes(id)) {
-      favoriteIds.value.push(id)
-
-      return
+    function addToFavorite(id: number): void {
+      if (!favoriteIds.value.includes(id)) {
+        favoriteIds.value.push(id)
+      }
     }
 
-    favoriteIds.value = favoriteIds.value.filter((item) => item !== id)
-  }
+    function toggleFavorites(id: number): void {
+      if (!favoriteIds.value.includes(id)) {
+        favoriteIds.value.push(id)
 
-  function isFavorite(id: number): boolean {
-    return favoriteIds.value.includes(id)
-  }
+        return
+      }
 
-  return { favoriteIds, addToFavorite, toggleFavorites, isFavorite }
-})
+      favoriteIds.value = favoriteIds.value.filter((item) => item !== id)
+    }
+
+    function isFavorite(id: number): boolean {
+      return favoriteIds.value.includes(id)
+    }
+
+    return { favoriteIds, addToFavorite, toggleFavorites, isFavorite }
+  },
+  { persist: true }
+)
