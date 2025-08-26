@@ -62,10 +62,6 @@
 </template>
 
 <style scoped lang="less">
-  .catalog {
-    padding: 100px 0;
-  }
-
   .catalog__search {
     display: flex;
     align-items: center;

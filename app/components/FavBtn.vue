@@ -1,5 +1,6 @@
 <script setup lang="ts">
-  const { isActive = false } = defineProps<{ isActive?: boolean }>()
+  const { id, isActive = false } = defineProps<{ id: number; isActive?: boolean }>()
+  const emit = defineEmits<{ (e: 'toggle:favorite', id: number): void }>()
 </script>
 
 <template>
@@ -7,6 +8,7 @@
     type="button"
     class="btn"
     :aria-label="isActive ? 'Удалить из избранного' : 'Добавить в избранное'"
+    @click.stop.prevent="emit('toggle:favorite', id)"
   >
     <Icon :name="isActive ? 'mdi:cards-heart' : 'mdi:cards-heart-outline'" size="20px" />
   </button>

@@ -1,10 +1,17 @@
 <script setup lang="ts">
   const { product } = defineProps<{ product: ProductInterface }>()
+
+  const favoriteStore = useFavoritesStore()
 </script>
 
 <template>
   <article class="product">
-    <FavBtn class="product__fav" />
+    <FavBtn
+      :id="product.id"
+      :is-active="favoriteStore.isFavorite(product.id)"
+      class="product__fav"
+      @toggle:favorite="(id) => favoriteStore.toggleFavorites(id)"
+    />
     <span v-if="product.discount" class="product__discount">-{{ product.discount }}%</span>
     <NuxtLink class="product__wrapper" :to="`/catalog/${product.id}`">
       <NuxtImg class="product__img" :src="product.images[0]" width="300" heigth="300" />

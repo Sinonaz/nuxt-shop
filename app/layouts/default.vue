@@ -23,5 +23,6 @@
 
   main {
     flex-grow: 1;
+    padding: 100px 0;
   }
 </style>

@@ -9,9 +9,19 @@ export const useFavoritesStore = defineStore('favorites', () => {
     }
   }
 
-  function removeFromFavorites(id: number): void {
+  function toggleFavorites(id: number): void {
+    if (!favoriteIds.value.includes(id)) {
+      favoriteIds.value.push(id)
+
+      return
+    }
+
     favoriteIds.value = favoriteIds.value.filter((item) => item !== id)
   }
 
-  return { favoriteIds, addToFavorite, removeFromFavorites }
+  function isFavorite(id: number): boolean {
+    return favoriteIds.value.includes(id)
+  }
+
+  return { favoriteIds, addToFavorite, toggleFavorites, isFavorite }
 })
