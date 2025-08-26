@@ -1,34 +1,36 @@
 <script setup lang="ts">
+  const defaultSelectOption = { label: 'Категория', value: '' }
+
   const {
     public: { apiUrl }
   } = useRuntimeConfig()
+  const router = useRouter()
+  const route = useRoute()
 
-  const defaultSelectOption = { label: 'Категория', value: '' }
-
-  const categoryId = ref<string>('')
-
+  const categoryId = ref<string>(route.query.category_id?.toString() ?? '')
   const query = computed(() => {
     return {
-      limit: 20,
-      offset: 0,
-      category_id: categoryId.value || undefined
+      limit: route.query.limit ?? 20,
+      offset: route.query.offset ?? 0,
+      category_id: route.query.category_id || undefined
     }
   })
-
-  const { data: categoriesData } = await useFetch<{ categories: CategoryInterface[] }>(
-    apiUrl + '/categories'
-  )
-  const { data: productsData } = await useFetch<{ products: ProductInterface[] }>(
-    apiUrl + '/products',
-    { query }
-  )
-
   const selectItems = computed(() => {
     return categoriesData.value
       ? categoriesData.value.categories
           .map(({ id, name }) => Object.assign({}, { label: name, value: id.toString() }))
           .concat([defaultSelectOption])
       : [defaultSelectOption]
+  })
+
+  const { data: categoriesData } = await useFetch<{ categories: CategoryInterface[] }>(apiUrl + '/categories')
+  const { data: productsData } = await useFetch<{ products: ProductInterface[] }>(apiUrl + '/products', {
+    key: 'products',
+    query
+  })
+
+  watch(categoryId, (value) => {
+    router.replace({ query: { category_id: value } })
   })
 </script>
 
