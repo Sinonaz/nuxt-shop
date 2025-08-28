@@ -20,7 +20,7 @@
         <NuxtLink to="/favorites" active-class="border-bottom">
           <Icon name="mdi:cards-heart-outline" size="22px" />
         </NuxtLink>
-        <NuxtLink to="/auth/login" active-class="border-bottom">
+        <NuxtLink to="/account" active-class="border-bottom">
           <Icon name="mdi:account-outline" size="22px" />
         </NuxtLink>
       </div>
