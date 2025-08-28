@@ -3,9 +3,7 @@
 
   const defaultSelectOption = { label: 'Категория', value: '' }
 
-  const {
-    public: { apiUrl }
-  } = useRuntimeConfig()
+  const API_URL = useAPI()
   const router = useRouter()
   const route = useRoute()
   const updateQueryParams = useDebounceFn((categoryId, search) => {
@@ -30,8 +28,8 @@
       : [defaultSelectOption]
   })
 
-  const { data: categoriesData } = await useFetch<{ categories: CategoryInterface[] }>(apiUrl + '/categories')
-  const { data: productsData } = await useFetch<{ products: ProductInterface[] }>(apiUrl + '/products', {
+  const { data: categoriesData } = await useFetch<{ categories: CategoryInterface[] }>(API_URL + '/categories')
+  const { data: productsData } = await useFetch<{ products: ProductInterface[] }>(API_URL + '/products', {
     key: 'products',
     query
   })

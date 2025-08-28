@@ -1,9 +1,5 @@
 <script setup lang="ts">
-  import { useFavoritesStore } from '~/stores/favorites.store'
-
-  const {
-    public: { apiUrl: API_URL }
-  } = useRuntimeConfig()
+  const API_URL = useAPI()
 
   const favoritesStore = useFavoritesStore()
 
