@@ -81,7 +81,8 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt',
     '@unocss/nuxt',
-    '@nuxtjs/sitemap'
+    '@nuxtjs/sitemap',
+    '@nuxtjs/robots'
   ],
   runtimeConfig: {
     token: '',
@@ -104,5 +105,8 @@ export default defineNuxtConfig({
       priority: 0.5,
       changefreq: 'weekly'
     }
+  },
+  robots: {
+    disallow: ['/account']
   }
 })
