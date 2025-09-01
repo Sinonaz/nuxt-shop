@@ -1,6 +1,11 @@
 <script setup lang="ts">
   import { useDebounceFn } from '@vueuse/core'
 
+  useSeoMeta({
+    title: 'Catalog',
+    description: 'Catalog description'
+  })
+
   const defaultSelectOption = { label: 'Категория', value: '' }
 
   const API_URL = useAPI()

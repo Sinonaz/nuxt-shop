@@ -1,4 +1,9 @@
 <script setup lang="ts">
+  useSeoMeta({
+    title: 'Favorite',
+    description: 'Favorite description'
+  })
+
   const API_URL = useAPI()
 
   const favoritesStore = useFavoritesStore()
